@@ -67,6 +67,7 @@ def main():
             if p2.returncode and p2.returncode != 0:
                 raise RPMError("cpio exited with a non-zero exit code: %d" % p2.returncode)
 
+        subprocess.check_call(["chmod", "0755", dirpath])
         with tarfile.open(args.output, "a") as tar:
             tar.add(dirpath, arcname="/")
     finally:
